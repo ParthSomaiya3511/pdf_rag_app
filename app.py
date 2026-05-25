@@ -8,7 +8,7 @@ from utils.vector_store import (
     create_vector_store,
     load_vector_store
 )
-from utils.rag_chain import get_llm
+from utils.rag_chain import ask_gemini
 
 st.set_page_config(
     page_title="PDF AI Chat",
@@ -77,14 +77,14 @@ if user_question:
             k=4
         )
 
-        llm = get_llm()
-
         context = "\n\n".join(
             [doc.page_content for doc in docs]
         )
 
         prompt = f"""
-        Answer the question using the context below.
+        You are a helpful PDF assistant.
+
+        Answer ONLY from the provided PDF context.
 
         Context:
         {context}
@@ -95,7 +95,7 @@ if user_question:
         Answer:
         """
 
-        response = llm.invoke(prompt)
+        response = ask_gemini(prompt)
 
         st.write("### Answer")
-        st.success(response.content)
+        st.success(response)
