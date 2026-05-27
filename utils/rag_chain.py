@@ -9,7 +9,7 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 def ask_gemini(prompt):
 
     model = genai.GenerativeModel(
-        model_name="models/gemini-pro"
+        model_name="gemini-3-flash-preview"
     )
 
     response = model.generate_content(prompt)
