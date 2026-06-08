@@ -5,7 +5,7 @@
    ====================================================== */
 
 :root {
-    --bg-gradient: radial-gradient(circle at 50% 25%, #c2d5ed 0%, #ffffff 85%) !important;
+    --bg-gradient: radial-gradient(circle at 50% 15%, #c2d5ed 0%, #c6d3e2 45%, #ffffff 100%) !important;
     --text-color: #0f172a !important;
     --card-bg: rgba(255, 255, 255, 0.45) !important;
     --card-border: rgba(0, 0, 0, 0.05) !important;
@@ -17,8 +17,8 @@ html,
 body,
 .stApp {
     font-family: 'Inter', sans-serif !important;
-    background: radial-gradient(circle at 50% 15%, #c2d5ed 0%, #c6d3e2 45%, #ffffff 100%) !important;
-    color: #0f172a !important;
+    background: var(--bg-gradient) !important;
+    color: var(--text-color) !important;
     transition: background 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
@@ -182,9 +182,13 @@ header {
     animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-
-.st-emotion-cache-4rsbii{
-    background: radial-gradient(circle at 50% 15%, #dfe2e7 0%, #deebf9 45%, #ffffff 100%) !important;
+/* Modified to bind directly to the active theme variable */
+.st-emotion-cache-4rsbii,
+.st-emotion-cache-13ln4jf,
+.st-emotion-cache-128upt6,
+[data-testid="stAppViewContainer"] {
+    background: var(--bg-gradient) !important;
+    transition: background 0.35s ease !important;
 }
 
 .hero-badge {
@@ -293,11 +297,11 @@ footer {
 
 /* Strips out the solid white/grey backgrounds and shadows behind the chat input */
 [data-testid="stBottom"],
-[data-testid="stBottom"] > div,
+[data-testid="stBottom"]>div,
 [data-testid="stBottomBlockContainer"],
-[data-testid="stBottomBlockContainer"] > div,
+[data-testid="stBottomBlockContainer"]>div,
 .st-emotion-cache-128upt6,
-.st-emotion-cache-128upt6 > div,
+.st-emotion-cache-128upt6>div,
 .st-emotion-cache-330v15 {
     background-color: transparent !important;
     background: transparent !important;
@@ -440,6 +444,6 @@ footer {
     }
 }
 
-.st-emotion-cache-128upt6{
+.st-emotion-cache-128upt6 {
     background: none;
 }
