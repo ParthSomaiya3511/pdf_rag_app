@@ -1,219 +1,445 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* ======================================================
+   GLOBAL SETUP & ACCURATE RADIAL BACKGROUND GLOW
+   ====================================================== */
+
+:root {
+    --bg-gradient: radial-gradient(circle at 50% 25%, #c2d5ed 0%, #ffffff 85%) !important;
+    --text-color: #0f172a !important;
+    --card-bg: rgba(255, 255, 255, 0.45) !important;
+    --card-border: rgba(0, 0, 0, 0.05) !important;
+    --sidebar-bg: #fafbfc !important;
+    --input-bg: #ffffff !important;
+}
+
 html,
 body,
-[class*="css"],
-.stApp{
-    font-family:'Inter',sans-serif;
+.stApp {
+    font-family: 'Inter', sans-serif !important;
+    background: radial-gradient(circle at 50% 15%, #c2d5ed 0%, #c6d3e2 45%, #ffffff 100%) !important;
+    color: #0f172a !important;
+    transition: background 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.stApp{
-    background:#ffffff;
-    color:#111827;
+header {
+    visibility: hidden;
 }
 
-/* Hide Streamlit */
-
-header{
-    visibility:hidden;
+/* Page Spacers */
+.block-container {
+    max-width: 900px !important;
+    padding-top: 2rem !important;
+    padding-bottom: 220px !important;
+    transition: all 0.3s ease;
 }
 
-#MainMenu{
-    visibility:hidden;
+/* ======================================================
+   SIDEBAR NAVS & LISTS (COMPREHENSIVE COLOR OVERRIDES)
+   ====================================================== */
+[data-testid="stSidebar"],
+[data-testid="stSidebar"]>div,
+[data-testid="stSidebarUserContent"] {
+    background-color: var(--sidebar-bg) !important;
+    border-right: 1px solid var(--card-border) !important;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-footer{
-    visibility:hidden;
+[data-testid="stSidebar"] * {
+    color: var(--text-color) !important;
 }
 
-/* Main Layout */
-
-.block-container{
-    max-width:900px !important;
-    padding-top:2rem !important;
-    padding-bottom:120px !important;
+/* Standardized Button Sizing in Sidebar */
+[data-testid="stSidebar"] div.stButton>button,
+[data-testid="stSidebar"] div.stDownloadButton>button {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border: 1px solid var(--card-border) !important;
+    border-radius: 8px !important;
+    width: 100% !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    max-height: 42px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0px 14px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    transition: all 0.2s ease-in-out !important;
 }
 
-/* Sidebar */
-
-[data-testid="stSidebar"]{
-    background:#f8fafc !important;
-    border-right:1px solid #e5e7eb;
+[data-testid="stSidebar"] div.stButton>button:hover,
+[data-testid="stSidebar"] div.stDownloadButton>button:hover {
+    background-color: var(--input-bg) !important;
+    border-color: #3b82f6 !important;
 }
 
-.sidebar-logo{
-    font-size:28px;
-    font-weight:700;
-    color:#2563eb;
+.sidebar-header-card {
+    padding: 10px 0;
 }
 
-.sidebar-subtitle{
-    font-size:14px;
-    color:#6b7280;
-    margin-top:4px;
+.sidebar-logo {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
-.sidebar-divider{
-    height:1px;
-    background:#e5e7eb;
-    margin:20px 0;
+.sidebar-subtitle {
+    font-size: 12px;
+    color: #64748b !important;
+    margin-top: 2px;
 }
 
-.feature-box{
-    background:white;
-    border:1px solid #e5e7eb;
-    border-radius:16px;
-    padding:18px;
+.sidebar-divider {
+    height: 1px;
+    background: var(--card-border);
+    margin: 16px 0;
 }
 
-.feature-box h3{
-    margin-top:0;
-    font-size:16px;
+.sidebar-label {
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    color: #64748b !important;
+    letter-spacing: 0.8px !important;
+    margin-bottom: 8px !important;
 }
 
-.feature-box ul{
-    padding-left:18px;
+/* ======================================================
+   CUSTOM FILE UPLOADER & THEME SYNC
+   ====================================================== */
+[data-testid="stSidebar"] [data-testid="stFileUploader"]>div {
+    background-color: var(--card-bg) !important;
+    border: 1px dashed var(--card-border) !important;
+    border-radius: 12px !important;
+    color: var(--text-color) !important;
+    transition: all 0.3s ease;
 }
 
-/* Hero */
-
-.hero-wrapper{
-    min-height:60vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
+[data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] {
+    background-color: var(--card-bg) !important;
+    border: 1px dashed var(--card-border) !important;
+    color: var(--text-color) !important;
 }
 
-.hero-badge{
-    background:#eff6ff;
-    color:#2563eb;
-    padding:10px 18px;
-    border-radius:999px;
-    font-size:14px;
-    font-weight:600;
-    margin-bottom:24px;
+[data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] button {
+    background-color: var(--sidebar-bg) !important;
+    color: var(--text-color) !important;
+    border: 1px solid var(--card-border) !important;
+    border-radius: 6px !important;
+    font-size: 12px !important;
 }
 
-.hero-title{
-    font-size:58px;
-    font-weight:700;
-    color:#111827;
-    line-height:1.1;
+[data-testid="stSidebar"] [data-testid="stFileUploader"] * {
+    color: var(--text-color) !important;
 }
 
-.hero-subtitle{
-    margin-top:18px;
-    font-size:18px;
-    color:#6b7280;
-    max-width:680px;
-    line-height:1.7;
+/* ======================================================
+   GLASSMORPHIC METADATA BOX
+   ====================================================== */
+.feature-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 16px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Chat Messages */
-
-[data-testid="stChatMessage"]{
-    padding-top:18px !important;
-    padding-bottom:18px !important;
+.feature-card-title {
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #3b82f6 !important;
 }
 
-[data-testid="stChatMessage"][aria-label="Chat message from user"]{
-    background:#f3f4f6;
-    border-radius:24px;
-    padding:14px 20px !important;
-    margin-left:auto;
-    max-width:80%;
+.feature-item {
+    font-size: 12px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-[data-testid="stChatMessage"][aria-label="Chat message from assistant"]{
-    background:transparent;
+/* ======================================================
+   HERO CONTEXT BANNER
+   ====================================================== */
+.hero-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 60px;
+    animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Assistant Actions */
 
-.assistant-action-bar{
-    display:flex;
-    gap:16px;
-    margin-top:12px;
-    color:#6b7280;
-    font-size:14px;
+.st-emotion-cache-4rsbii{
+    background: radial-gradient(circle at 50% 15%, #dfe2e7 0%, #deebf9 45%, #ffffff 100%) !important;
 }
 
-/* Fixed Input */
-
-.chat-input-fixed{
-    position:fixed;
-    bottom:20px;
-    left:58%;
-    transform:translateX(-50%);
-    width:60%;
-    max-width:850px;
-    z-index:999;
+.hero-badge {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
-@media(max-width:992px){
+.hero-title {
+    font-size: 54px !important;
+    font-weight: 800 !important;
+    letter-spacing: -1.5px;
+    margin-bottom: 14px;
+    line-height: 1.1;
+}
 
-    .chat-input-fixed{
-        width:92%;
-        left:50%;
+.hero-subtitle {
+    font-size: 16px;
+    color: #64748b;
+    max-width: 540px;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* ======================================================
+   PREMIUM CUSTOM CHAT LAYOUT
+   ====================================================== */
+.chat-row {
+    display: flex;
+    width: 100%;
+    margin-bottom: 24px;
+    animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.user-row {
+    justify-content: flex-end;
+}
+
+.assistant-row {
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.chat-bubble {
+    padding: 16px 24px;
+    max-width: 78%;
+    font-size: 15px;
+    line-height: 1.6;
+    letter-spacing: -0.1px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.user-bubble {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 22px 22px 4px 22px;
+}
+
+.assistant-bubble {
+    background-color: var(--card-bg);
+    border-radius: 4px 22px 22px 22px;
+    border: 1px solid var(--card-border);
+    width: 100%;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.assistant-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+    border: 1px solid #bfdbfe;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.05);
+}
+
+.assistant-badge-tag {
+    font-size: 10px;
+    font-weight: 700;
+    color: #3b82f6;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+}
+
+/* ======================================================
+   CLEAN PILL CAPSULE CHAT INPUT (FULL HOVER SYNC & BACKDROP)
+   ====================================================== */
+footer {
+    display: none !important;
+}
+
+/* Strips out the solid white/grey backgrounds and shadows behind the chat input */
+[data-testid="stBottom"],
+[data-testid="stBottom"] > div,
+[data-testid="stBottomBlockContainer"],
+[data-testid="stBottomBlockContainer"] > div,
+.st-emotion-cache-128upt6,
+.st-emotion-cache-128upt6 > div,
+.st-emotion-cache-330v15 {
+    background-color: transparent !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+[data-testid="stChatInputContainer"] {
+    background-color: var(--input-bg) !important;
+    border: 1px solid var(--card-border) !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.04) !important;
+    min-height: 52px !important;
+    height: 52px !important;
+    display: flex !important;
+    align-items: center !important;
+    margin-bottom: 30px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    transition: all 0.3s ease;
+}
+
+[data-testid="stChatInputContainer"] textarea {
+    font-size: 15px !important;
+    color: var(--text-color) !important;
+    caret-color: #2563eb !important;
+    background-color: transparent !important;
+    padding: 10px 0 !important;
+    min-height: 40px !important;
+    height: 40px !important;
+    max-height: 40px !important;
+    resize: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: color 0.3s ease;
+}
+
+[data-testid="stChatInputSubmitButton"] {
+    background-color: #eff6ff !important;
+    color: #2563eb !important;
+    border-radius: 50% !important;
+    width: 36px !important;
+    height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: none !important;
+}
+
+/* ======================================================
+   SOURCES EXPANDER & METADATA GRID
+   ====================================================== */
+.sources-wrapper-box {
+    margin-top: 40px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.chunks-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+    padding: 10px 0;
+}
+
+.chunk-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.chunk-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 8px;
+}
+
+.chunk-index-tag {
+    font-size: 11px;
+    font-weight: 700;
+    color: #2563eb;
+    background-color: #eff6ff;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.chunk-score-metric {
+    font-size: 11px;
+    color: #10b981;
+    font-weight: 500;
+}
+
+.chunk-card-body {
+    font-size: 13px;
+    line-height: 1.6;
+    height: 140px;
+    overflow-y: auto;
+}
+
+/* Custom Scrollbars */
+.chunk-card-body::-webkit-scrollbar {
+    width: 4px;
+}
+
+.chunk-card-body::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 2px;
+}
+
+/* Dynamic Voice Recording Widget Container */
+.voice-widget-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 4px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
     }
 
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Input Container */
-
-.chat-input-fixed > div{
-    background:white;
-    border:1px solid #e5e7eb;
-    border-radius:40px;
-    padding:8px 12px;
-    box-shadow:0 8px 30px rgba(0,0,0,0.08);
-}
-
-/* Chat Input */
-
-[data-testid="stChatInput"]{
-    border:none !important;
-}
-
-[data-testid="stChatInput"] > div{
-    border:none !important;
-    box-shadow:none !important;
-    background:transparent !important;
-}
-
-[data-testid="stChatInput"] textarea{
-    font-size:16px !important;
-}
-
-/* Send Button */
-
-[data-testid="stChatInputSubmitButton"]{
-    background:#2563eb !important;
-    border-radius:50% !important;
-}
-
-/* Plus Button */
-
-[data-testid="stPopover"] button{
-    width:44px !important;
-    height:44px !important;
-    border-radius:50% !important;
-    border:none !important;
-    background:#f3f4f6 !important;
-    font-size:22px !important;
-}
-
-/* Mic */
-
-.mic-button{
-    width:44px;
-    height:44px;
-    border-radius:50%;
-    background:#f3f4f6;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:18px;
+.st-emotion-cache-128upt6{
+    background: none;
 }
